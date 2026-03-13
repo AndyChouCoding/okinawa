@@ -84,19 +84,19 @@
         padding: 0 15px;
       }
 
-      /* 導航切換按鈕區域 (全螢幕一致顯示) */
+      /* 導航切換按鈕區域 */
       .day-tabs {
-        display: flex; /* 改為常設顯示 */
+        display: flex;
         justify-content: center;
         align-items: center;
-        gap: clamp(15px, 4vw, 30px); /* 電腦版間距稍微拉大 */
+        gap: clamp(15px, 4vw, 30px);
         margin-bottom: 30px;
         padding: 0 20px;
         width: 100%;
       }
 
       .tab-btn {
-        width: clamp(45px, 8vw, 60px); /* 電腦版稍微大一點 */
+        width: clamp(45px, 8vw, 60px);
         height: clamp(45px, 8vw, 60px);
         border-radius: 50%;
         background-color: var(--card-bg);
@@ -115,7 +115,6 @@
       }
 
       .tab-btn::after {
-        /* 電腦版 hover 時提示文字 (Day 1) */
         content: "Day " attr(data-day);
         position: absolute;
         bottom: -25px;
@@ -153,17 +152,15 @@
         margin: 0 auto;
         padding: 0 15px 60px;
         width: 100%;
-        flex-grow: 1; /* 讓版面在切換時保持底部對齊 */
+        flex-grow: 1;
       }
 
-      /* 行程卡片區 */
       .days-wrapper {
         width: 100%;
         position: relative;
-        min-height: 400px; /* 避免切換時高度過度跳動 */
+        min-height: 400px;
       }
 
-      /* 行程卡片：全面改為 JS 控制切換，不再區分螢幕尺寸 */
       .day-card {
         background: var(--card-bg);
         border-radius: clamp(16px, 4vw, 24px);
@@ -176,12 +173,12 @@
           transform 0.3s ease,
           box-shadow 0.3s ease;
         width: 100%;
-        display: none; /* 預設全部隱藏 */
+        display: none;
         animation: none;
       }
 
       .day-card.active-day {
-        display: block; /* 被選中才顯示 */
+        display: block;
         animation: fadeInScale 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
       }
 
@@ -217,7 +214,6 @@
         width: 100%;
       }
 
-      /* 因為外面已經有很大的數字按鈕了，卡片內的 01, 02 視覺上可以隱藏讓版面更清爽 */
       .day-num {
         display: none;
       }
@@ -241,6 +237,93 @@
         margin-top: 5px;
         align-self: flex-start;
         margin-bottom: 10px;
+      }
+
+      /* 天氣與穿著資訊區塊 */
+      .weather-info {
+        background: linear-gradient(
+          135deg,
+          #e8f4fd 0%,
+          #f0e6ff 50%,
+          #fce4ec 100%
+        );
+        border-radius: 16px;
+        padding: clamp(14px, 3vw, 20px) clamp(16px, 4vw, 24px);
+        margin-bottom: clamp(15px, 4vw, 25px);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        border: 1.5px solid rgba(163, 210, 224, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .weather-info::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        width: 80px;
+        height: 80px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.6) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+
+      .weather-icon {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        line-height: 1;
+        flex-shrink: 0;
+      }
+
+      .weather-details {
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .weather-temp {
+        font-weight: 700;
+        color: var(--text-main);
+        font-size: clamp(0.95rem, 3vw, 1.1rem);
+        margin-bottom: 4px;
+      }
+
+      .weather-temp .temp-high {
+        color: #e27b88;
+        font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+      }
+
+      .weather-temp .temp-low {
+        color: #7ba3c9;
+        font-size: clamp(0.9rem, 2.8vw, 1rem);
+      }
+
+      .weather-condition {
+        font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+        color: var(--text-light);
+        margin-bottom: 6px;
+      }
+
+      .weather-outfit {
+        display: flex;
+        align-items: flex-start;
+        gap: 6px;
+        font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+        color: var(--text-main);
+        background: rgba(255, 255, 255, 0.65);
+        padding: 8px 12px;
+        border-radius: 10px;
+        line-height: 1.6;
+      }
+
+      .weather-outfit .outfit-icon {
+        flex-shrink: 0;
+        font-size: 1.1rem;
+        margin-top: 2px;
       }
 
       /* 時間軸設計 */
@@ -445,7 +528,6 @@
         }
       }
 
-      /* 極小螢幕 (如 iPhone SE) */
       @media screen and (max-width: 375px) {
         .day-title {
           font-size: 1.05rem;
@@ -491,7 +573,7 @@
       <p class="subtitle">自然、悠閒、購物與海岸線的完美交織</p>
     </header>
 
-    <!-- 導航切換圓點 (全螢幕一致顯示) -->
+    <!-- 導航切換圓點 -->
     <div class="day-tabs" id="dayTabs">
       <div class="tab-btn active" data-day="1">1</div>
       <div class="tab-btn" data-day="2">2</div>
@@ -501,7 +583,7 @@
 
     <div class="container">
       <div class="days-wrapper" id="daysWrapper">
-        <!-- Day 1 -->
+        <!-- ===== Day 1：抵達 + 中部異國風情（原 Day 3 活動） ===== -->
         <article class="day-card active-day" id="day1">
           <svg class="illu illu-plane" viewBox="0 0 100 100">
             <path
@@ -532,10 +614,34 @@
 
           <div class="day-header">
             <div class="day-title-wrapper">
-              <div class="day-title">抵達極簡開局：機場極近周邊</div>
+              <div class="day-title">抵達沖繩 × 中部異國風情漫步</div>
             </div>
-            <div class="theme-badge">水族館 ✕ 地中海海岸</div>
+            <div class="theme-badge">✈️ 落地即玩 ✕ 美式文青 ✕ 夕陽咖啡</div>
           </div>
+
+          <!-- 天氣資訊 -->
+          <div class="weather-info">
+            <div class="weather-icon">🌤️</div>
+            <div class="weather-details">
+              <div class="weather-temp">
+                3/14（六）
+                <span class="temp-high">18°C</span> /
+                <span class="temp-low">13°C</span>
+                ｜晴時多雲
+              </div>
+              <div class="weather-condition">
+                降水確率 20%｜風やや冷たい｜到着日はやや涼しめ
+              </div>
+            </div>
+            <div class="weather-outfit">
+              <span class="outfit-icon">🧥</span>
+              <span>
+                今天偏涼！機上穿厚外套，抵達後建議長袖＋薄外套或風衣。
+                美國村海邊風大且傍晚會更涼，防風外套必帶。 舒適運動鞋＋防曬乳。
+              </span>
+            </div>
+          </div>
+
           <ul class="timeline">
             <li>
               <div class="event-header">
@@ -548,55 +654,167 @@
             </li>
             <li>
               <div class="event-header">
-                <span class="time">09:15 - 11:00</span>
-                <span class="event-title">🚗 取車出發</span>
+                <span class="time">09:15 - 10:30</span>
+                <span class="event-title">🚗 取車 → 直奔中部</span>
               </div>
               <div class="event-desc">
-                至租車所取車，前往距離極近的「豐見城市」(車程約15-20分)。
+                至租車所取車，走高速直接前往浦添/北谷町方向（車程約 40 分鐘）。
               </div>
             </li>
             <li>
               <div class="event-header">
-                <span class="time">11:00 - 13:30</span>
-                <span class="event-title">🐠 DMM 水族館 & iias 商場</span>
+                <span class="time">10:30 - 13:30</span>
+                <span class="event-title">☕ 早午餐與質感購物</span>
               </div>
               <div class="event-desc">
+                抵達後先享用早午餐、逛逛文青小店：
                 <ul>
-                  <li>主打結合最新光影技術的新型態水族館，動物近距離。</li>
-                  <li><strong>午餐：</strong>於 iias 購物中心內輕鬆解決。</li>
-                </ul>
-              </div>
-            </li>
-            <li>
-              <div class="event-header">
-                <span class="time">13:30 - 16:00</span>
-                <span class="event-title">🌊 瀨長島 (Umikaji Terrace)</span>
-              </div>
-              <div class="event-desc">
-                <ul>
-                  <li>「沖繩小希臘」純白地中海階梯式建築。</li>
                   <li>
-                    <strong>下午茶：</strong
-                    >推薦「幸福鬆餅」，看海兼看飛機起降。
+                    <strong>A：港川外人住宅區</strong>
+                    (特色文青小店、oHacorte蘋果塔)
+                  </li>
+                  <li>
+                    <strong>B：PARCO CITY 浦添</strong>
+                    (超大面海商城，主攻日牌服飾)
                   </li>
                 </ul>
               </div>
             </li>
             <li>
               <div class="event-header">
-                <span class="time">16:00 - 晚間</span>
-                <span class="event-title">🌆 那霸市區 Check-in & 國際通</span>
+                <span class="time">14:00 - 18:00</span>
+                <span class="event-title"
+                  >🎡 美國村 (American Village) 漫步</span
+                >
               </div>
               <div class="event-desc">
-                飯店休息後逛國際通。<br /><strong>晚餐推薦：</strong
-                >暖暮拉麵、88牛排 或 沖繩燒肉。
+                享受濃厚美式異國風情。<br />
+                <strong>推薦：</strong>於海景咖啡廳坐擁西海岸絕美日落🌅
+              </div>
+            </li>
+            <li>
+              <div class="event-header">
+                <span class="time">18:00 - 晚間</span>
+                <span class="event-title">🍽️ 美國村周邊晚宴 & Check-in</span>
+              </div>
+              <div class="event-desc">
+                晚餐建議：迴轉壽司市場 美浜店 或是 沖繩特色塔可飯 (Taco
+                Rice)。<br />
+                餐後前往那霸市區飯店 Check-in，或直接入住北谷町海邊飯店。
               </div>
             </li>
           </ul>
         </article>
 
-        <!-- Day 2 -->
+        <!-- ===== Day 2：水族館 + 瀨長島（原 Day 1 下午活動，完整一天） ===== -->
         <article class="day-card" id="day2">
+          <svg class="illu illu-onigiri" viewBox="0 0 100 100">
+            <path
+              d="M25 75 Q50 15 50 15 Q50 15 75 75 Z"
+              fill="#FFF"
+              stroke="#5C524B"
+              stroke-width="4"
+              stroke-linejoin="round"
+            />
+            <path d="M35 75 L65 75 L60 55 Q50 50 40 55 Z" fill="#5C524B" />
+            <circle cx="43" cy="42" r="3" fill="#5C524B" />
+            <circle cx="57" cy="42" r="3" fill="#5C524B" />
+            <path
+              d="M47 48 Q50 52 53 48"
+              fill="none"
+              stroke="#5C524B"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <circle cx="35" cy="45" r="4" fill="#FFB6C1" />
+            <circle cx="65" cy="45" r="4" fill="#FFB6C1" />
+          </svg>
+
+          <div class="day-header">
+            <div class="day-title-wrapper">
+              <div class="day-title">水族館 × 地中海海岸悠閒日</div>
+            </div>
+            <div class="theme-badge">DMM水族館 ✕ 瀨長島小希臘 ✕ 國際通</div>
+          </div>
+
+          <!-- 天氣資訊 -->
+          <div class="weather-info">
+            <div class="weather-icon">☀️</div>
+            <div class="weather-details">
+              <div class="weather-temp">
+                3/15（日）
+                <span class="temp-high">22°C</span> /
+                <span class="temp-low">14°C</span>
+                ｜晴天 ☀️
+              </div>
+              <div class="weather-condition">
+                降水確率 20%｜好天気！｜日差しが強い
+              </div>
+            </div>
+            <div class="weather-outfit">
+              <span class="outfit-icon">👕</span>
+              <span>
+                今天是大晴天！白天短袖或薄長袖即可，早晚加薄外套。
+                瀨長島拍照好天氣，但海風涼，薄風衣備著。
+                防曬乳＋太陽眼鏡必備，鞋子以運動鞋或涼鞋為佳。
+              </span>
+            </div>
+          </div>
+
+          <ul class="timeline">
+            <li>
+              <div class="event-header">
+                <span class="time">09:00 - 09:30</span>
+                <span class="event-title">🚗 出發前往豐見城市</span>
+              </div>
+              <div class="event-desc">
+                從飯店出發，前往那霸機場旁的「豐見城市」(車程約 15-20 分鐘)。
+              </div>
+            </li>
+            <li>
+              <div class="event-header">
+                <span class="time">09:30 - 12:30</span>
+                <span class="event-title">🐠 DMM 水族館 & iias 商場</span>
+              </div>
+              <div class="event-desc">
+                <ul>
+                  <li>主打結合最新光影技術的新型態水族館，動物近距離互動。</li>
+                  <li>沒有時間趕，可以慢慢逛整個 iias 商場。</li>
+                  <li><strong>午餐：</strong>於 iias 購物中心內輕鬆解決。</li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <div class="event-header">
+                <span class="time">13:00 - 16:00</span>
+                <span class="event-title">🌊 瀨長島 (Umikaji Terrace)</span>
+              </div>
+              <div class="event-desc">
+                <ul>
+                  <li>「沖繩小希臘」純白地中海階梯式建築，拍照超美！</li>
+                  <li>
+                    <strong>下午茶：</strong
+                    >推薦「幸福鬆餅」，看海兼看飛機起降✈️
+                  </li>
+                  <li>整個下午在這裡悠閒散步、逛小店、喝咖啡。</li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <div class="event-header">
+                <span class="time">16:30 - 晚間</span>
+                <span class="event-title">🌆 國際通散策</span>
+              </div>
+              <div class="event-desc">
+                回到那霸市區，逛國際通採購伴手禮、體驗街頭小吃。<br />
+                <strong>晚餐推薦：</strong>暖暮拉麵、88牛排 或 沖繩燒肉。
+              </div>
+            </li>
+          </ul>
+        </article>
+
+        <!-- ===== Day 3：北部蔚藍絕景（原 Day 2，不變） ===== -->
+        <article class="day-card" id="day3">
           <svg class="illu illu-whale" viewBox="0 0 150 80">
             <path
               d="M20 40 Q40 10 90 20 Q120 25 140 40 Q120 55 90 60 Q40 70 20 40"
@@ -639,6 +857,31 @@
             </div>
             <div class="theme-badge">指標景點 ✕ 寶可夢中心</div>
           </div>
+
+          <!-- 天氣資訊 -->
+          <div class="weather-info">
+            <div class="weather-icon">🌤️</div>
+            <div class="weather-details">
+              <div class="weather-temp">
+                3/16（一）
+                <span class="temp-high">21°C</span> /
+                <span class="temp-low">15°C</span>
+                ｜晴時多雲
+              </div>
+              <div class="weather-condition">
+                降水確率 20%｜北部山區約低 1-2°C
+              </div>
+            </div>
+            <div class="weather-outfit">
+              <span class="outfit-icon">🧢</span>
+              <span>
+                北部氣溫約 19-20°C，建議長袖上衣＋薄外套。
+                水族館室內冷氣強，備一件薄罩衫。
+                古宇利島風大，帽子建議帶夾子防吹走。運動鞋為佳。
+              </span>
+            </div>
+          </div>
+
           <ul class="timeline">
             <li>
               <div class="event-header">
@@ -697,81 +940,7 @@
           </ul>
         </article>
 
-        <!-- Day 3 -->
-        <article class="day-card" id="day3">
-          <svg class="illu illu-onigiri" viewBox="0 0 100 100">
-            <path
-              d="M25 75 Q50 15 50 15 Q50 15 75 75 Z"
-              fill="#FFF"
-              stroke="#5C524B"
-              stroke-width="4"
-              stroke-linejoin="round"
-            />
-            <path d="M35 75 L65 75 L60 55 Q50 50 40 55 Z" fill="#5C524B" />
-            <circle cx="43" cy="42" r="3" fill="#5C524B" />
-            <circle cx="57" cy="42" r="3" fill="#5C524B" />
-            <path
-              d="M47 48 Q50 52 53 48"
-              fill="none"
-              stroke="#5C524B"
-              stroke-width="2"
-              stroke-linecap="round"
-            />
-            <circle cx="35" cy="45" r="4" fill="#FFB6C1" />
-            <circle cx="65" cy="45" r="4" fill="#FFB6C1" />
-          </svg>
-
-          <div class="day-header">
-            <div class="day-title-wrapper">
-              <div class="day-title">中部異國風情與午後微醺</div>
-            </div>
-            <div class="theme-badge">美式文青 ✕ 夕陽咖啡</div>
-          </div>
-          <ul class="timeline">
-            <li>
-              <div class="event-header">
-                <span class="time">09:30 - 14:00</span>
-                <span class="event-title">☕ 早午餐與質感購物</span>
-              </div>
-              <div class="event-desc">
-                開車前往浦添或北谷町：
-                <ul>
-                  <li>
-                    <strong>A：港川外人住宅區</strong>
-                    (特色文青小店、oHacorte蘋果塔)
-                  </li>
-                  <li>
-                    <strong>B：PARCO CITY 浦添</strong>
-                    (超大面海商城，主攻日牌服飾)
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li>
-              <div class="event-header">
-                <span class="time">14:00 - 18:00</span>
-                <span class="event-title"
-                  >🎡 美國村 (American Village) 漫步</span
-                >
-              </div>
-              <div class="event-desc">
-                享受濃厚美式異國風情。<br />
-                <strong>推薦：</strong>於海景咖啡廳坐擁西海岸絕美日落。
-              </div>
-            </li>
-            <li>
-              <div class="event-header">
-                <span class="time">18:00 - 晚間</span>
-                <span class="event-title">🍽️ 美國村周邊晚宴</span>
-              </div>
-              <div class="event-desc">
-                晚餐建議：迴轉壽司市場 美浜店 或是 沖繩特色塔可飯 (Taco Rice)。
-              </div>
-            </li>
-          </ul>
-        </article>
-
-        <!-- Day 4 -->
+        <!-- ===== Day 4：南部文化洗禮（不變） ===== -->
         <article class="day-card" id="day4">
           <svg class="illu illu-flower" viewBox="0 0 100 100">
             <path
@@ -835,6 +1004,31 @@
             </div>
             <div class="theme-badge">文化體驗 ✕ 琉球海風</div>
           </div>
+
+          <!-- 天氣資訊 -->
+          <div class="weather-info">
+            <div class="weather-icon">🌤️</div>
+            <div class="weather-details">
+              <div class="weather-temp">
+                3/17（二）
+                <span class="temp-high">22°C</span> /
+                <span class="temp-low">16°C</span>
+                ｜晴時多雲
+              </div>
+              <div class="weather-condition">
+                降水確率 20%｜最終日も好天気！暖かくて過ごしやすい
+              </div>
+            </div>
+            <div class="weather-outfit">
+              <span class="outfit-icon">👟</span>
+              <span>
+                最後一天天氣舒適！玉泉洞內涼爽潮濕，穿薄長袖＋運動鞋。
+                南部海景區白天較曬，帽子＋防曬必備。
+                回程搭機建議穿舒適寬鬆衣物，外套隨身帶。
+              </span>
+            </div>
+          </div>
+
           <ul class="timeline">
             <li>
               <div class="event-header">
@@ -889,12 +1083,16 @@
       <section class="tips-section">
         <ol>
           <li>
-            <strong>順路滿分推薦：</strong
-            >第二天北部回程順著高速公路下來去逛寶可夢中心，不浪費時間！
+            <strong>落地即玩：</strong
+            >第一天抵達後直衝中部美國村，不繞路、不浪費時間！
           </li>
           <li>
-            <strong>首長尾短：</strong
-            >第一天前往極近機場的瀨長島，最後一天排滿沖繩南部文化景點，體力剛好。
+            <strong>悠閒補充：</strong
+            >第二天安排機場附近景點（DMM水族館＋瀨長島），步調輕鬆、距離近。
+          </li>
+          <li>
+            <strong>順路滿分：</strong
+            >第三天北部回程順著高速公路下來去逛寶可夢中心，一氣呵成！
           </li>
           <li>
             <strong>節奏舒適：</strong
@@ -911,16 +1109,10 @@
 
         tabs.forEach((tab) => {
           tab.addEventListener("click", () => {
-            // 1. 移除所有 tab 的 active
             tabs.forEach((t) => t.classList.remove("active"));
-            // 2. 幫當前點擊的加 active (小圓點放大變色)
             tab.classList.add("active");
-
-            // 3. 隱藏所有卡片
             const dayId = tab.getAttribute("data-day");
             dayCards.forEach((card) => card.classList.remove("active-day"));
-
-            // 4. 只顯示被選對應的那天，帶點淡入小動畫
             document.getElementById("day" + dayId).classList.add("active-day");
           });
         });
